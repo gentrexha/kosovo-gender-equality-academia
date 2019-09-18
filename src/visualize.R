@@ -2,59 +2,53 @@ install.packages("pacman")
 pacman::p_load(plotly)
 
 # set wd
-setwd("C:/Projects/Personal/gender-equality-tertiary-education")
+setwd("C:/Projects/Personal/kosovo-gender-equality-academia")
 
-df <- read.csv("data/processed/gender-equality.csv", stringsAsFactors=FALSE)
+# read data
+df <- read.csv("data/processed/gender-equality.csv", stringsAsFactors=FALSE, encoding="UTF-8")
+df$Perqindja.Femra <- df$Perqindja.Femra*100
+df <- arrange(df, -Perqindja.Femra)
 
-library(plotly)
-
-y <- c('Japan', 'United Kingdom', 'Canada', 'Netherlands', 'United States', 'Belgium', 'Sweden', 'Switzerland')
-x_saving <- c(1.3586, 2.2623000000000002, 4.9821999999999997, 6.5096999999999996,
-              7.4812000000000003, 7.5133000000000001, 15.2148, 17.520499999999998)
-x_net_worth <- c(93453.919999999998, 81666.570000000007, 69889.619999999995, 78381.529999999999,
-                 141395.29999999999, 92969.020000000004, 66090.179999999993, 122379.3)
-data <- data.frame(y, x_saving, x_net_worth)
-
-p1 <- plot_ly(x = ~x_saving, y = ~reorder(y, x_saving), name = 'Household savings, percentage of household disposable income',
+p1 <- plot_ly(df, x = ~Perqindja.Femra, y = ~reorder(Emri, Perqindja.Femra), name = 'Tertiary education, academic staff (% female)',
               type = 'bar', orientation = 'h',
               marker = list(color = 'rgba(50, 171, 96, 0.6)',
                             line = list(color = 'rgba(50, 171, 96, 1.0)', width = 1))) %>%
   layout(yaxis = list(showgrid = FALSE, showline = FALSE, showticklabels = TRUE, domain= c(0, 0.85)),
          xaxis = list(zeroline = FALSE, showline = FALSE, showticklabels = TRUE, showgrid = TRUE)) %>%
   add_annotations(xref = 'x1', yref = 'y',
-                  x = x_saving * 2.1 + 3,  y = y,
-                  text = paste(round(x_saving, 2), '%'),
+                  x = df$Perqindja.Femra + 5,  y = df$Emri,
+                  text = paste(round(Perqindja.Femra, 2), '%'),
                   font = list(family = 'Arial', size = 12, color = 'rgb(50, 171, 96)'),
                   showarrow = FALSE)
 
-p2 <- plot_ly(x = ~x_net_worth, y = ~reorder(y, x_saving), name = 'Household net worth, Million USD/capita',
+p2 <- plot_ly(df, x = ~df$Total, y = ~reorder(df$Emri, df$Perqindja.Femra), name = 'Total academic staff',
               type = 'scatter', mode = 'lines+markers',
               line = list(color = 'rgb(128, 0, 128)')) %>%
   layout(yaxis = list(showgrid = FALSE, showline = TRUE, showticklabels = FALSE,
                       linecolor = 'rgba(102, 102, 102, 0.8)', linewidth = 2,
                       domain = c(0, 0.85)),
          xaxis = list(zeroline = FALSE, showline = FALSE, showticklabels = TRUE, showgrid = TRUE,
-                      side = 'top', dtick = 25000)) %>%
+                      side = 'top', dtick = 500)) %>%
   add_annotations(xref = 'x2', yref = 'y',
-                  x = x_net_worth, y = y,
-                  text = paste(x_net_worth, 'M'),
+                  x = df$Total-250, y = df$Emri,
+                  text = paste(df$Total),
                   font = list(family = 'Arial', size = 12, color = 'rgb(128, 0, 128)'),
                   showarrow = FALSE)
 
 p <- subplot(p1, p2) %>%
-  layout(title = 'Household savings & net worth for eight OECD countries',
+  layout(title = "Gender equality in Kosovo's Academia",
          legend = list(x = 0.029, y = 1.038,
                        font = list(size = 10)),
-         margin = list(l = 100, r = 20, t = 70, b = 70),
+         margin = list(l = 10, r = 20, t = 100, b = 70),
          paper_bgcolor = 'rgb(248, 248, 255)',
          plot_bgcolor = 'rgb(248, 248, 255)') %>%
   add_annotations(xref = 'paper', yref = 'paper',
-                  x = -0.14, y = -0.15,
-                  text = paste('OECD (2015), Household savings (indicator), Household net worth (indicator). doi: 10.1787/cfc6f499-en (Accessed on 05 June 2015)'),
+                  x = -0.40, y = -0.15,
+                  text = paste('Source: Kosovo Agency of Statistics'),
                   font = list(family = 'Arial', size = 10, color = 'rgb(150,150,150)'),
                   showarrow = FALSE)
 
 # Create a shareable link to your chart
 # Set up API credentials: https://plot.ly/r/getting-started
-chart_link = api_create(p, filename="horizontalbar-subplots")
+chart_link = api_create(p, filename="horizontalbar-subplots-gender-equality-v1")
 chart_link
