@@ -1,1 +1,8 @@
 # kosovo-gender-equality-academia
+
+
+TODO(Academic Staff)
+,409.0,961.0,811.0,1592.0,1220.0,2553.0,3773.0,3.206465026178718,8.793534973821282
+
+TODO(Students)
+78325.0,71989.0,149698.0,Gjithsej
