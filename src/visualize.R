@@ -133,7 +133,7 @@ p1 <- plot_ly(df, x = ~Perqindja.Femra, y = ~reorder(Emri, Perqindja.Femra), nam
                   font = list(family = 'Arial', size = 12, color = 'rgb(202,73,140)'),
                   showarrow = FALSE)
 
-p2 <- plot_ly(df, x = ~df$Total, y = ~reorder(df$Emri, df$Perqindja.Femra), name = 'Total enrollment (absolute number)',
+p2 <- plot_ly(df, x = ~df$Total, y = ~reorder(df$Emri, df$Perqindja.Femra), name = 'Total enrollment, tertiary (absolute number)',
               type = 'scatter', mode = 'lines+markers',
               line = list(color = 'rgb(128, 0, 128)'), marker = list(color = "rgb(128,0,128)")) %>%
   layout(yaxis = list(showgrid = FALSE, showline = TRUE, showticklabels = FALSE,
@@ -148,7 +148,7 @@ p2 <- plot_ly(df, x = ~df$Total, y = ~reorder(df$Emri, df$Perqindja.Femra), name
                   showarrow = FALSE)
 
 p <- subplot(p1, p2) %>%
-  layout(title = "Gender equality in Kosovo's Tertiary Education Sector",
+  layout(title = "Gender diversity in Kosovo's Tertiary Education Sector",
          legend = list(x = 0.029, y = 1.038,
                        font = list(size = 10)),
          margin = list(l = 10, r = 20, t = 100, b = 70),

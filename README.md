@@ -48,3 +48,13 @@ Kjo më bëri të mendoja për barazinë gjinore në sektorin akademik të Kosov
 Dhe për të thënë më pak, numrat janë tronditës. Përqindja e përgjithshme e stafit akademik femra në Kosovë është 32.45%, duke filluar nga 45.25% në Kolegjin AAB dhe deri në 11.52% në Kolegjin Fama. Nga ana tjetër, një fakt i cili është me të vërtetë interesant, është se regjistrimi i përgjithshëm në universitete dhe kolegje i studentëve femra në Kosovë është 52.32% një prirje, duke e vendosur përqindjen e regjistrimit te femrave ne universitete dhe kolegje në Kosovë në top 10 përqindjet e para të botës! Sipas The World University Rankings https://twitter.com/phil_baty/status/655304957827092481
 
 Domethënë padyshim që ka mjaft studente femra, por të dhënat nuk na tregojnë pse sa më lart që ngjiten në shkallën akademike, numri i punonjësve femra ulet.
+
+### Gender diversity in Kosovo's Tertiary Education Sector
+
+Title: Gender diversity in Kosovo's Tertiary Education Sector
+
+While staying on the subject of gender diversity, here's the gender diversity distribution for the students in Kosovo's Universities.
+
+Source: [Kosovo Agency of Statistics](http://ask.rks-gov.net/en/kosovo-agency-of-statistics)
+
+Tools: Python, R & plotly
