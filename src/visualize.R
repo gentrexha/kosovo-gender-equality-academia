@@ -155,7 +155,7 @@ p <- subplot(p1, p2) %>%
          paper_bgcolor = 'rgb(248, 248, 255)',
          plot_bgcolor = 'rgb(248, 248, 255)') %>%
   add_annotations(xref = 'paper', yref = 'paper',
-                  x = -0.50, y = -0.17,
+                  x = -0.48, y = -0.15,
                   text = paste('Source: Kosovo Agency of Statistics'),
                   font = list(family = 'Arial', size = 10, color = 'rgb(150,150,150)'),
                   showarrow = FALSE)

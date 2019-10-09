@@ -53,7 +53,7 @@ Domethënë padyshim që ka mjaft studente femra, por të dhënat nuk na tregojn
 
 Title: Gender diversity in Kosovo's Tertiary Education Sector
 
-While staying on the subject of gender diversity, here's the gender diversity distribution for the students in Kosovo's Universities.
+While staying on the subject of gender diversity, my last post was about gender diversity in high end academia positions. Here's the gender diversity distribution for the students in Kosovo's universities & colleges.
 
 Source: [Kosovo Agency of Statistics](http://ask.rks-gov.net/en/kosovo-agency-of-statistics)
 
