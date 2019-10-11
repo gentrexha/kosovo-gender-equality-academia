@@ -37,9 +37,15 @@ europe$country[25] <- "Slovak Republic"
 europe$country[16] <- "North Macedonia"
 europe$country[6] <- "Russian Federation"
 
-wb_data <- wb(country = c("ALB", "AND", "ARM", "AUT", "BLR", "RUS", "BEL", "BIH", "BGR", "HRV", "CYP", "CZE", "DNK", "EST", "FIN", "FRA", "DEU", "GRC", "HUN", "ISL", "IRL", "ITA", "LVA", "LIE", "LTU", "LUX", "MLT", "MDA", "MCO", "XKX", "MNE", "MKD", "NOR", "POL", "PRT", "ROU", "SMR", "SRB", "SVK", "SVN", "ESP", "SWE", "CHE", "TUR", "UKR", "GBR", "NLD"), 
-              indicator = c("SE.TER.ENRR.FE"), 
-              startdate = 2018, enddate = 2018, return_wide = TRUE)
+wb_data <- wb(country = c("ALB", "AND", "ARM", "AUT", 
+                          "BLR", "RUS", "BEL", "BIH", "BGR", "HRV", "CYP", 
+                          "CZE", "DNK", "EST", "FIN", "FRA", "DEU", "GRC", 
+                          "HUN", "ISL", "IRL", "ITA", "LVA", "LIE", "LTU", 
+                          "LUX", "MLT", "MDA", "MCO", "XKX", "MNE", "MKD", 
+                          "NOR", "POL", "PRT", "ROU", "SMR", "SRB", "SVK", 
+                          "SVN", "ESP", "SWE", "CHE", "TUR", "UKR", "GBR", 
+                          "NLD"), indicator = c("SE.TER.ENRR.FE"), startdate = 2016, 
+              enddate = 2016, return_wide = TRUE)
 
 europe <- merge(europe, wb_data, by ="country", all = TRUE)
 
@@ -47,22 +53,43 @@ europe <- merge(europe, wb_data, by ="country", all = TRUE)
 
 
 # define custom theme
+theme_kv <- function(...) {
+  theme_minimal() +
+    theme(
+      text = element_text(color = "#6E6F73"), #family = "Arial", 
+      axis.line = element_blank(),
+      axis.text.x = element_blank(),
+      axis.text.y = element_blank(),
+      axis.ticks = element_blank(),
+      axis.title.x = element_blank(),
+      axis.title.y = element_blank(),
+      panel.grid.major = element_line(color = "#EBEBDF", size = 0.2),
+      panel.grid.minor = element_blank(),
+      plot.background = element_rect(fill = "#f2f2f2", color = NA),
+      panel.background = element_rect(fill = "#f2f2f2", color = NA),
+      legend.background = element_rect(fill = "#f2f2f2", color = NA),
+      panel.border = element_blank(),
+      ...
+    )
+}
+
 
 # plot
-p <- ggplot(europe) +
-  geom_sf_interactive(aes(fill = europe$SP.POP.GROW,
+ggplot(europe) +
+  geom_sf_interactive(aes(fill = europe$SE.TER.ENRR.FE,
                           tooltip = country),
                       color = '#ffffff',
                       size = 0.10) +
-  #scale_fill_viridis('%', option = "E", direction = -1)+
+  scale_fill_distiller(palette= "Purples", direction = 1)+
   coord_sf(xlim = c(40, -25), ylim = c(34, 72), expand = FALSE)+
   labs(
-    title = 'Population Growth (Annual %)',
+    title = 'School enrollment, tertiary, female (% gross)',
     subtitle = "",
-    caption = "Source: World Bank"
+    caption = "Source: World Bank", 
+    fill = "%"
   ) +
   theme_kv()+
-  facet_wrap(~date)+
+#  facet_wrap(~date)+
   theme(text = element_text(size = 7),
         plot.title = element_text(size = 9, 
                                   hjust = 0, 
@@ -87,4 +114,4 @@ p <- ggplot(europe) +
                                                     b = 0, 
                                                     unit = "cm"), 
                                     color = "#6E6F73")
-  )
+        )
